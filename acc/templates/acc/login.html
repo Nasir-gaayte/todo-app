@@ -1,0 +1,17 @@
+{% extends "core/index.html" %}
+
+{% block titel %}Login{% endblock titel %}
+    
+{% block content %}
+        <h1>LOGIN</h1>
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit">LOGIN</button>
+            </form>
+            <span>To register click <a href="{% url 'register' %}">Here...</a></span>
+        </div>    
+
+{% endblock content %}
+    

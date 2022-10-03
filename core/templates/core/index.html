@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>
+    {% block titel %}Home{% endblock titel %}
+        </title>
+</head>
+<body style="backgound-color:pink;">
+        <section >
+            <nav class="navbar navbar-expand-lg">
+                <a href="{% url 'index' %}"><div class="navbar-brand">
+                    Todo
+                </div></a>
+                <div class="navbar-item">
+                    <div class="container">
+                        <ul class="navbar-nav me-auto md-lg-0">
+                            {% if user.is_authenticated %}
+                            <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
+                            {%else%}
+                            <li class="nav-item"><a href="{% url 'login' %}">Login</a></li>
+                            {%endif%}
+                        </ul>    
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+{% block content %}
+    <img src="{% static 'images/coffee2.jpeg' %}" alt="">
+    <h1>Home</h1>
+    
+        
+{% endblock content %}
+        
+</body>
+</html>

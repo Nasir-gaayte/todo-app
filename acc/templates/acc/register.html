@@ -1,0 +1,15 @@
+{% extends "core/index.html" %}
+
+{% block titel %}Register{% endblock titel %}
+    
+{% block content %}
+    <h1>register</h1>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit">Register</button>
+        </form>
+    </div>
+{% endblock content %}
+    
