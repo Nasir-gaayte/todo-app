@@ -1,0 +1,13 @@
+{% extends "core/index.html" %}
+
+{% block titel %}details{% endblock titel %}
+    
+{% block content %}
+        {% for todo in todos.all%}
+        <span><h1>{{todo.title|upper}}</h1></span>  
+        <h3>{{todo.is_completed|yesno}}</h3>
+        <h2>{{todo.description}}</h2>
+        {%endfor%}
+        ff
+{% endblock content %}
+    

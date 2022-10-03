@@ -1,0 +1,17 @@
+{% extends "core/index.html" %}
+
+{% block titel %}CREATE{% endblock titel %}
+    
+{% block content %}
+        <h1>CREATE</h1>
+        <div class="container">
+            <form  class="ui form" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="ui button primary" type="submit">CREATE</button>
+            </form>
+           
+        </div>    
+
+{% endblock content %}
+    
