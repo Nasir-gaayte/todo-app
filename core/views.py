@@ -14,7 +14,15 @@ from django.http import HttpResponsePermanentRedirect
 
 def index(request):
     todos = TodoModel.objects.all()
-    return render(request,'core/index.html',{'todos':todos})
+    yes = todos.filter(is_completed=True).count()
+    no = todos.filter(is_completed=False).count()
+    allcount = todos.count()
+    return render(request,'core/index.html',{
+        'todos':todos,
+        'allcount':allcount,
+        'yes':yes,
+        'no':no,
+        })
 
 
 

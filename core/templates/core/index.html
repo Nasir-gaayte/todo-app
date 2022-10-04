@@ -46,17 +46,61 @@
     <img src="{% static 'images/coffee2.jpeg' %}" alt="">
     <h1>Home</h1>
     <div class="container">
-        <ul>
-            {%for todo in todos %}
-            <li>
-            <a href="{% url 'todo_detail' todo.id %}">
-                    {{todo.titel}}
-                {{todo.description}}
-                {{todo.is_completed}}
-            </a>
-            </li>
-        </ul>
-        {%endfor%}
+        {% if todos %}
+
+        <table class = "ui table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Completed</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for todo in todos %}
+                <tr>
+                       
+                        <td> <a href="{% url 'todo_detail' todo.id %}">{{todo.title}}</a></td>
+                        <td>{{todo.description}}</td>
+                        <td>{{todo.is_completed|yesno}}</td>
+                        <td>
+                            <a href="" class= "ui button">
+                                <i class="eye icon"></i>
+                            </a>
+                            <a href="" class= "ui button">
+                                <i class="edit icon"></i>
+                            </a>
+                        </td>
+                    
+                    </tr>
+                {%endfor%}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        <a href="">All todos {{allcount}}</a>
+                    </th>
+                    <th>
+                    </th>
+                    <th>
+                        <a href="">Yes = {{yes}}</a><br>
+                        <a href="">No = {{no}}</a>
+                    </th>
+                    <th>
+                        <a href=""></a>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        {%else%}
+        <div class="ui message">
+            <div class="header">
+                No itme yet
+            </div>
+            <p>To create new todo click <a href="{% url 'create' %}">here...</a></p>
+        </div>
+        {%endif%}
     </div>
 </div>
     
