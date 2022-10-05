@@ -4,11 +4,21 @@
     
 {% block content %}
     <h1>register</h1>
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            {{form}}
-            <button type="submit">Register</button>
+    <div class="container ">
+
+        <form class="ui form" method="POST">
+            <div class="container">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon">
+                            <i class="user icon"></i>
+                        </div>
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button  class="ui  positive ui button" type="submit">Register</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 {% endblock content %}

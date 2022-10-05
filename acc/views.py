@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.views import generic
 from django .views.generic import CreateView 
 from django.urls import reverse_lazy
+from .forms import RegisterForm
 
 
 
@@ -14,7 +15,8 @@ from django.urls import reverse_lazy
 
 class RegisterView(generic.CreateView):
     model = User
-    form_class= UserCreationForm
+    # form_class= RegisterForm
+    fields= ("username", "email", "password")
     template_name = 'acc/register.html'
     success_url= reverse_lazy('login')
 
