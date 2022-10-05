@@ -8,4 +8,5 @@ urlpatterns = [
     path('todo_detail/<int:pk>/',views.detail,name='todo_detail'),
     # path('delete/<int:pk>',views.DeleteTodo.as_view(),name='delete'),
     path('delete/<int:pk>/',views.deletetodo,name='delete'),
+    path('update/<int:pk>',views.UpdateTodo.as_view(),name='update'),
 ]

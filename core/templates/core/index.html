@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,8 +46,11 @@
     
     {% block content %}
     <img src="{% static 'images/coffee2.jpeg' %}" alt="">
-    <h1>Home</h1>
-    <div class="container">
+    <div class="conten">
+
+        <h1> <span> Home</span></h1> {% include "core/messages.html" %}
+    </div>
+    <div class="content">
         {% if todos %}
 
         <table class = "ui table">
@@ -69,7 +73,7 @@
                             <a href="{% url 'todo_detail' todo.pk %}" class= "ui button">
                                 <i class="eye icon"></i>
                             </a>
-                            <a href="" class= "ui button">
+                            <a href="{% url 'update' todo.pk %}" class= "ui button">
                                 <i class="edit icon"></i>
                             </a>
                         </td>

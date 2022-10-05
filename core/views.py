@@ -7,6 +7,8 @@ from django.views import generic
 from .models import TodoModel
 from .forms import TodoForm
 from django.http import HttpResponsePermanentRedirect
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -50,6 +52,7 @@ def creat_todo(request):
 
             todo.save()
             # return HttpResponsePermanentRedirect(reverse('todo_detail',kwargs={'id':todo.pk}))
+            messages.success(request,"successful created todos")
             return redirect('index')
     form = TodoForm()        
     return render(request,'core/create.html',{'form':form})    
@@ -66,8 +69,10 @@ def detail(request, pk):
 
 def deletetodo(request, pk):
     todos = TodoModel.objects.filter(id=pk)
-    if todos:
-        form = todos.delete()
+    form = todos
+    if request.method == "POST":
+        todos.delete()
+        messages.success(request,'Todo it deleted')
         return redirect('index')
     return render(request,'core/delete.html',{'form':form})
     
@@ -83,3 +88,15 @@ def deletetodo(request, pk):
     #     return reverse_lazy('core:index')
 
 
+class UpdateTodo(generic.UpdateView):
+    model= TodoModel
+    form_class= TodoForm
+    template_name= 'core/update.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, "Update is success..")
+        return super().form_valid(form)
+
+    
+    
+    

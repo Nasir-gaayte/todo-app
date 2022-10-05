@@ -1,0 +1,11 @@
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="ui message">
+    {{message|upper}}
+</div>
+
+{% endfor %}
+
+{% endif %}

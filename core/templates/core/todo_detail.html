@@ -1,7 +1,6 @@
 {% extends "core/index.html" %}
 {% load static %}
 
-
 {% block titel %}details{% endblock titel %}
     
 {% block content %}
@@ -10,7 +9,7 @@
                 {% for todo in todos.all%}
 
               <div class="container">
-                <h1><span>Todo Details</span></h1>
+                <h1><span>Todo Details</span></h1>{% include "core/messages.html" %}
                 <div class="ui card">
                         <div class="content">
                                 <div class="header">{{todo.title|upper}}</div>
@@ -30,7 +29,7 @@
                                                 Not Completed yet ....
                                                 {%endif%}
                                         </p>
-                                        <a href="" class="ui button primary">Eidit</a>
+                                        <a href="{% url 'update' todo.pk %}" class="ui button primary">Eidit</a>
                                         <a href="{% url 'delete' todo.pk %}" class="ui button red">Delete this todo</a>
                                 </div>
                         </div>

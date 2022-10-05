@@ -1,0 +1,23 @@
+{% extends "core/index.html" %}
+{% load static %}
+
+
+{% block titel %}Update{% endblock titel %}
+    
+{% block content %}
+<h1><samp>Delelte todo</samp></h1>
+
+        <div class="container">
+            <div class="content">
+                <form class="ui form" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+
+           
+        
+{% endblock content %}
+    
