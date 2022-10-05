@@ -1,16 +1,45 @@
 {% extends "core/index.html" %}
+{% load static %}
+
 
 {% block titel %}details{% endblock titel %}
     
 {% block content %}
-        {% for todo in todos.all%}
-        <table class="ui table">
 
-                <span><h1>{{todo.title|upper}}</h1></span>  
-                <h3>{{todo.is_completed|yesno}}</h3>
-        <h2>{{todo.description}}</h2>
-        </table>                
-        {%endfor%}
+
+                {% for todo in todos.all%}
+
+              <div class="container">
+                <h1><span>Todo Details</span></h1>
+                <div class="ui card">
+                        <div class="content">
+                                <div class="header">{{todo.title|upper}}</div>
+                                <div class="meta">{{todo.creater_at}}</div>
+                                <div class="description">
+                                        <p>{{todo.description}}/p>
+                                </div>
+                                <div class="extra content">
+                                        <p>
+                                                {% if todo.is_completed == True %}
+                                                {{todo.is_completed|yesno}}
+                                                <i class="check icon green"></i>
+                                                Completed at : <small> {{todo.updated_at}}</small>
+                                                {%else%}
+                                                {% comment %} {{todo.is_completed|yesno}} {% endcomment %}
+                                                <i class="window close icon red"></i>
+                                                Not Completed yet ....
+                                                {%endif%}
+                                        </p>
+                                        <a href="" class="ui button primary">Eidit</a>
+                                        <a href="{% url 'delete' todo.pk %}" class="ui button red">Delete this todo</a>
+                                </div>
+                        </div>
+                </div>
+              </div>
+            
+              {%endfor%}
+
+           
         
 {% endblock content %}
     

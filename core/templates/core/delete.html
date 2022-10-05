@@ -1,0 +1,20 @@
+{% extends "core/index.html" %}
+{% load static %}
+
+
+{% block titel %}delete{% endblock titel %}
+    
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <p>You showr the this todo no longer values to you </p>
+    <button type="submit" class="btn btn-danger ">Delelt</button>
+</form>
+
+
+             
+           
+        
+{% endblock content %}
+    

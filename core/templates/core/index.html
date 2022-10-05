@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>
     {% block titel %}Home{% endblock titel %}
@@ -65,7 +66,7 @@
                         <td>{{todo.description}}</td>
                         <td>{{todo.is_completed|yesno}}</td>
                         <td>
-                            <a href="" class= "ui button">
+                            <a href="{% url 'todo_detail' todo.pk %}" class= "ui button">
                                 <i class="eye icon"></i>
                             </a>
                             <a href="" class= "ui button">
@@ -79,13 +80,13 @@
             <tfoot>
                 <tr>
                     <th>
-                        <a href="">All todos {{allcount}}</a>
+                        <a href="?filter=all">All todos {{allcount}}</a>
                     </th>
                     <th>
                     </th>
                     <th>
-                        <a href="">Yes = {{yes}}</a><br>
-                        <a href="">No = {{no}}</a>
+                        <a href="?filter=yes">Yes = {{yes}}</a><br>
+                        <a href="?filter=no">No = {{no}}</a>
                     </th>
                     <th>
                         <a href=""></a>
@@ -106,6 +107,6 @@
     
         
 {% endblock content %}
-        
+    <script  src="{% static '/js/script.js' %}"></script>
 </body>
 </html>
