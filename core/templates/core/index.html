@@ -19,7 +19,7 @@
             <div class="ui menu">
                 <div class="ui container">
                     <a href="{% url 'index' %}" class="header item">
-                        <img src="{% static 'images/coffee2.jpeg' %}" alt="" class="logo">
+                        <img src="{% static 'images/logo1.png' %}" alt="" class="logo">
                     </a>
                     <div class="right item">
                         <div class="ui item">
@@ -45,14 +45,13 @@
 
     
     {% block content %}
-    <img src="{% static 'images/coffee2.jpeg' %}" alt="">
+    <img src="{% static 'images/logo1.png' %}" alt="">
     <div class="conten">
 
         <h1> <span> Home</span></h1> {% include "core/messages.html" %}
     </div>
     <div class="content">
         {% if todos %}
-
         <table class = "ui table">
             <thead>
                 <tr>
@@ -63,7 +62,7 @@
                 </tr>
             </thead>
             <tbody>
-                {%for todo in todos %}
+                {% for todo in todos %}
                 <tr>
                        
                         <td> <a href="{% url 'todo_detail' todo.id %}">{{todo.title}}</a></td>
@@ -105,7 +104,7 @@
             </div>
             <p>To create new todo click <a href="{% url 'create' %}">here...</a></p>
         </div>
-        {%endif%}
+ {%endif%}
     </div>
 </div>
     

@@ -8,6 +8,7 @@ from .models import TodoModel
 from .forms import TodoForm
 from django.http import HttpResponsePermanentRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -19,21 +20,29 @@ def get_show_todos(request,todos):
         if request.GET.get('filter') =='no':
             return todos.filter(is_completed=False)    
     return todos
-
+@login_required
 def index(request):
-    todos = TodoModel.objects.all()
-    yes = todos.filter(is_completed=True).count()
-    no = todos.filter(is_completed=False).count()
-    allcount = todos.count()
+    yes = ''
+    no = ''
+    allcount = ''
+    todos = ''
+    
+    if TodoModel :
+        todos = TodoModel.objects.filter(owner= request.user)
+        yes = todos.filter(is_completed=True).count()
+        no = todos.filter(is_completed=False).count()
+        allcount = todos.count()
+    else:    
+        todos = TodoModel()
     return render(request,'core/index.html',{
         'todos':get_show_todos(request,todos),
-        'allcount':allcount,
         'yes':yes,
         'no':no,
+        'allcount':allcount
         })
 
 
-
+@login_required
 def creat_todo(request):
     form= TodoForm()
     
@@ -43,13 +52,14 @@ def creat_todo(request):
             title = request.POST.get("title")
             description = request.POST.get("description")
             is_completed = request.POST.get("is_completed",False)
+           
 
             todo =TodoModel()
 
             todo.title= title
             todo.description = description
             todo.is_completed = True if is_completed == "on" else False
-
+            todo.owner = request.user
             todo.save()
             # return HttpResponsePermanentRedirect(reverse('todo_detail',kwargs={'id':todo.pk}))
             messages.success(request,"successful created todos")
@@ -66,7 +76,7 @@ def detail(request, pk):
     return render(request,'core/todo_detail.html',{'todos':todos})
 
 
-
+@login_required
 def deletetodo(request, pk):
     todos = TodoModel.objects.filter(id=pk)
     form = todos
